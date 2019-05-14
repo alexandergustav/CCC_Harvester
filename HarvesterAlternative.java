@@ -29,18 +29,26 @@ public class HarvesterAlternative {
 		startZeile  = 4; // @todo: change to param values
 		startSpalte = 1; // @todo: change to param values
 		
+		if (startSpalte == 1) {
+			richtung = "links2rechts";
+		} else {
+			richtung = "rechts2links";
+		}
+		
 		if (startZeile > 1) {
 			for (int z=startZeile; z>=1; z--) {
-				if (z % 2 == 0) {
+				if (richtung.equals("rechts2links")) {
 					// von rechts nach links
 					for (int s=spalten; s>=startSpalte; s--) {
 						System.out.print(feld[z][s]+" ");
 					}
+					richtung = "links2rechts";
 				} else {
 					// von links nach rechts (default)
 					for (int s=startSpalte; s<=spalten; s++) {
 						System.out.print(feld[z][s]+" ");
 					}
+					richtung = "rechts2links";
 				}
 			}
 		} else {
